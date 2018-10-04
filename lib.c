@@ -34,6 +34,20 @@ unsigned int lcm(unsigned int a, unsigned int b) {
     return a * b / d;
 }
 
-void genData(char *dataIn, float *dataOut, double baseFreq, double binSize, double duration, long sampleSize, unsigned int binCountExp, unsigned int dataSize) {
-    unsigned int startBit = ;
-    unsigned int endBit = 
+#define MAX_BIN_EXP 8
+
+int genData(char *dataIn, float *dataOut, double baseFreq, double binSize, double duration, long sampleSize, unsigned int binCountExp, unsigned int dataSize) {
+    if (binCountExp > MAX_BIN_EXP) {
+        return -1;
+    }
+    unsigned char cycle = 1;
+    unsigned int value = binSize;
+    unsigned int maxValue = 2 ^ binCountExp;
+    double outFreq = baseFreq;
+    for (unsigned int i = 0; i < dataSize; i++) {
+        for (unsigned int j = 0; j < 8; j++) {
+            if (dataIn[i] & cycle) {
+                outFreq += value;
+            }
+            if 
+            value *= 2;
