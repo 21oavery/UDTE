@@ -40,14 +40,18 @@ int genData(char *dataIn, float *dataOut, double baseFreq, double binSize, doubl
     if (binCountExp > MAX_BIN_EXP) {
         return -1;
     }
-    unsigned char cycle = 1;
+    unsigned char cycle;
     unsigned int value = binSize;
-    unsigned int maxValue = 2 ^ binCountExp;
+    unsigned int maxValue = binSize * (2 ^ (binCountExp - 1));
     double outFreq = baseFreq;
     for (unsigned int i = 0; i < dataSize; i++) {
+        cycle = 1;
         for (unsigned int j = 0; j < 8; j++) {
             if (dataIn[i] & cycle) {
                 outFreq += value;
             }
-            if 
-            value *= 2;
+            if (value == maxValue) value = binSize;
+            else value *= 2;
+            cycle = cycle << 2;
+        }
+    }
