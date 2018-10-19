@@ -3,11 +3,14 @@
 
 #define PI 3.141592654
 
+struct GenToneState {
+    
+
 size_t getDataSize(double duration, long sampleSize) {
     return duration * sampleSize / 1000;
 }
 
-void genFreq(float *data, double freq, double duration, long sampleSize) {
+void genTone(float *data, double freq, double duration, long sampleSize) {
     size_t dataSize = getDataSize(duration, sampleSize);
     double samplePerCycle = sampleSize / freq;
     for (size_t i = 0; i < dataSize; i++) {
