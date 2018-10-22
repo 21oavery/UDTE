@@ -4,7 +4,10 @@
 #define PI 3.141592654
 
 struct GenToneState {
-    
+    double freq;
+    unsigned long sampleOffset;
+    unsigned long samplesLeft;
+}
 
 size_t getDataSize(double duration, long sampleSize) {
     return duration * sampleSize / 1000;
